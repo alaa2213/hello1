@@ -31,6 +31,12 @@ const serverUsingExpress = express();
 serverUsingExpress.get('/home', (req, res) => {
     res.status(200).json({ message: 'Welcome to our home page' });
 });
+serverUsingExpress.get('events', (req, res) => {
+    res.status(200).json({ message: 'Welcome to our events page' });
+});
+serverUsingExpress.get('/events/:eventId', (req, res) => {
+    res.status(200).json({ message: 'please enter an id' });
+});
 
 const PORT = 7000;
 
