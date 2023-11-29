@@ -1,14 +1,25 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import EventsModel from './EventsModel.js';
 import { sayHello, sayGoodbye } from './hello-module.js'; // User defined module 
 import http from 'http';  // predefined module in node
 
+const connect = async () => {
+    await mongoose.connect('mongodb+srv://yehia:X4XqQh7i7WnCLW13@cluster0.vy6btua.mongodb.net/?retryWrites=true&w=majority').then(() => {
+        console.log('Connected to database');
+    });
+}
+
+await connect();
+const app = express()
+app.use(express.json())
 // Note: in order for the project to work first run `npm install` this should install node modules folders
 // Use the command:  node app (make sure that you are inside test_node folder in the terminal)
 
 // Using imported module: 
-const name = 'Yehia';
-console.log(sayHello(name));
-console.log(sayGoodbye(name));
+// const name = 'Yehia';
+// console.log(sayHello(name));
+// console.log(sayGoodbye(name));
 
 
 
@@ -40,6 +51,6 @@ serverUsingExpress.get('/events/:eventId', (req, res) => {
 
 const PORT = 7000;
 
-app.listen(PORT, ()=> {
-        console.log(`connected to port ${PORT}`);
-    });
+app.listen(PORT, () => {
+    console.log(`connected to port ${PORT}`);
+});
