@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import EventsModel from './EventsModel.js';
+import TicketsModel from './TicketsModel.js';
 import { sayHello, sayGoodbye } from './hello-module.js'; // User defined module 
 import http from 'http';  // predefined module in node
 
@@ -118,6 +119,30 @@ app.get('/events/:id/attendees', (req, res) => {
 app.get('/events/:id/tickets', (req, res) => {
     const { id } = req.params;
     res.status(200).json({ message: `The tickets for the event with id = ${id}` });
+});
+
+
+app.get('/tickets', async (req, res) => {
+    const events = await TicketsModel.find();
+    res.status(200).json({ tickets });
+});
+
+
+app.patch('/tickets/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { userID } = req.body;
+        const ticket = await TicketsModel.findById(id);
+        if (ticket) {
+            ticket.userID = userID;
+            ticket.save();
+            ticket.status(200).json({ ticket });
+        } else {
+            res.status(404).json({ message: 'no ticket with this event id' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'server error' });
+    }
 });
 
 const PORT = 7000;
