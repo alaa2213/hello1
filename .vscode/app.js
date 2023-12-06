@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 import EventModel from './EventsModel.js';
 import TicketsModel from './TicketsModel.js';
 import AttendeeModel from './AttendeeModel.js'
-//import { sayHello, sayGoodbye } from './hello-module.js'; // User defined module 
-import http from 'http';  // predefined module in node
+
+import http from 'http'; 
 
 const connect = async () => {
     await mongoose.connect('mongodb+srv://haneenmahmoud37:leelo@cluster0.36po8yj.mongodb.net/').then(() => {
@@ -13,7 +13,7 @@ const connect = async () => {
 }
 
 await connect();
-//const serverUsingExpress = express();
+
 
 const app = express();
 
