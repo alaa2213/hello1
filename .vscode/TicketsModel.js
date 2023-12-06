@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const TicketSchema = new mongoose.Schema({
     eventId: {
@@ -11,8 +11,8 @@ const TicketSchema = new mongoose.Schema({
     },
     userID: {
         type: String,
-       
-    
+
+
     }
 });
 
