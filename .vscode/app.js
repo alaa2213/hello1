@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import EventModel from './EventsModel.js';
 import TicketsModel from './TicketsModel.js';
-import AttendeeModel from './AttendeeModel.js'
+import AttendeeModel from './AttendeeModel.js';
 
 import http from 'http'; 
 
